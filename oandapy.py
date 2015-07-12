@@ -218,6 +218,8 @@ class API(EndpointsMixin, object):
 
         self.access_token = access_token
         self.client = requests.Session()
+        self.client.verify = False
+        requests.packages.urllib3.disable_warnings()
 
         #personal token authentication
         if self.access_token:
@@ -285,6 +287,8 @@ class Streamer():
         self.client = requests.Session()
         self.client.stream = True
         self.connected = False
+        self.client.verify = False
+        requests.packages.urllib3.disable_warnings()
 
         #personal token authentication
         if self.access_token:
